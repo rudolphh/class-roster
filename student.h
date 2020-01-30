@@ -15,11 +15,13 @@ class Student {
         int age;// age of the student
         int* days;// days to complete courses (3) for the term
 
+        string degreeStr(Degree program);
+
 // Requirements D.2.
     public: 
 
         // Requirements D.2.c 
-        Student(string ID, string firstName, string lastName, string email, int age, int* days); 
+        Student(string ID, string firstName, string lastName, string email, int age, int* days, Degree program); 
         virtual ~Student();// Requirements D.2.e
 
         // Requirements D.2.a
@@ -38,7 +40,6 @@ class Student {
         void setEmail(string email);
         void setAge(int age);
         void setDays(int daysOfCourse1, int daysOfCourse2, int daysOfCourse3);
-        virtual void setDegreeProgram(Degree program);
 
         virtual void print();// Requirements D.2.d
         

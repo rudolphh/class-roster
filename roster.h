@@ -5,13 +5,14 @@
 class Roster {
 
     Student** classRosterArray;// Requirements E.1.
-
+    int max;
+    
     public:
     
-    Roster();
+    Roster(int numStudents);
     ~Roster();
 
-    void add(string ID, string firstName, string lastName, string email, int age, 
+    void add(string studentID, string firstName, string lastName, string email, int age, 
                 int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree program);
         
     void remove(string studentID);

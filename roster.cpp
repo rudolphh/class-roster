@@ -2,6 +2,9 @@
 #include <sstream>
 #include <vector>
 #include "roster.h"
+#include "networkStudent.h"
+#include "securityStudent.h"
+#include "softwareStudent.h"
 
 using std::cout;
 using std::endl;
@@ -17,8 +20,11 @@ const string studentData[] = {
     "A5,Rudy,Hernandez,rhern87@wgu.edu,37,40,7,15,SOFTWARE" 
 };
 
-vector<string> parseFields(string data);// helper
+vector<string> parseFields(string data);
+Degree enumDegree(string str);
 
+
+///////////////////// Requirement F (C++ requires int main)
 int main(){
 
     cout<<"Scripting and Programming - Applications – C867"<<endl;
@@ -26,28 +32,59 @@ int main(){
     cout<<"Student ID: #000628800"<<endl;
     cout<<"Rudy Hernandez"<<endl;
 
-    //Roster classRoster;
+    const int numStudents = sizeof(studentData) / sizeof(studentData[0]);
 
-    vector<string> dataFields[5];
-    stringstream ss; 
-    string field;
+    Roster classRoster(numStudents);
 
-    for (int row = 0; row < 5; row++){
-
-        dataFields[row] = parseFields(studentData[row]);
-        ss.str(studentData[row]);
-
-        for(int x = 0; x < 9; x++) cout<<dataFields[row][x]<<" ";
-
-        cout<<endl;
-
-        ss.clear();
+    vector<string> parsedRow;
+    for (int row = 0; row < numStudents; row++){ 
+        parsedRow = parseFields(studentData[row]);
+        classRoster.add(parsedRow[0], parsedRow[1], parsedRow[2], parsedRow[3], stoi(parsedRow[4]),
+                        stoi(parsedRow[5]), stoi(parsedRow[6]), stoi(parsedRow[7]), enumDegree(parsedRow[8]));
     }
+
+    classRoster.printAll();
 
     return 0;
 
 }// end int main()
 
+
+/////////////////// Roster class methods
+
+void Roster::add(string studentID, string firstName, string lastName, string email, int age, 
+                int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree program){
+
+    Student* student;
+    int* days { new int[3] { daysInCourse1, daysInCourse2, daysInCourse3 } };
+
+    switch (program) {
+        case NETWORK : student = new NetworkStudent(studentID, firstName, lastName, email, age, days, program ); break;
+        case SECURITY: student = new SecurityStudent(studentID, firstName, lastName, email, age, days, program ); break;
+        case SOFTWARE: student = new SoftwareStudent(studentID, firstName, lastName, email, age, days, program ); break;
+    }
+
+    for (int i = 0; i < max; i++){
+        if (!classRosterArray[i]) {  classRosterArray[i] = student; break; }
+    }
+}
+
+
+void Roster::remove(string studentID){ }
+void Roster::printAll(){ 
+    for(int i = 0; i < max; i++){
+        if(classRosterArray[i]) classRosterArray[i]->print();
+    }
+ }
+void Roster::printDaysInCourse(string studentID){ }
+void Roster::printInvalidEmails(){ }
+void Roster::printByDegreeProgram(int degreeProgram){ }
+
+
+Roster::Roster(int numStudents){ classRosterArray = new Student*[numStudents]; max = numStudents; }
+Roster::~Roster(){}
+
+///////////////////////  HELPERS
 vector<string> parseFields(string dataRow){
 
     vector<string> dataFields;
@@ -60,3 +97,8 @@ vector<string> parseFields(string dataRow){
 
     return dataFields;
 }
+
+Degree enumDegree(string str){
+    return str == "NETWORK" ? NETWORK : (str == "SECURITY" ? SECURITY : (str == "SOFTWARE" ? SOFTWARE : UNDEFINED));
+}
+

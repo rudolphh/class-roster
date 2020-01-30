@@ -9,12 +9,10 @@ class SecurityStudent : public Student {
 
     public:
 
-    SecurityStudent(string ID, string firstName, string lastName, string email, int age, int* days, Degree program);
+    SecurityStudent(string studentID, string firstName, string lastName, string email, int age, int* days, Degree program);
     ~SecurityStudent();
 
     Degree getDegreeProgram() override;
-    void setDegreeProgram(Degree program) override;
-
     void print() override;
 
 };

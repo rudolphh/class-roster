@@ -9,12 +9,10 @@ class SoftwareStudent : public Student {
 
     public:
 
-    SoftwareStudent(string ID, string firstName, string lastName, string email, int age, int* days, Degree program);
+    SoftwareStudent(string studentID, string firstName, string lastName, string email, int age, int* days, Degree program);
     ~SoftwareStudent();
 
     Degree getDegreeProgram() override;
-    void setDegreeProgram(Degree program) override;
-
     void print() override;
     
 };

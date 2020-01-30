@@ -9,11 +9,9 @@ class NetworkStudent : public Student {
 
     public:
 
-    NetworkStudent(string ID, string firstName, string lastName, string email, int age, int* days, Degree program);
+    NetworkStudent(string studentID, string firstName, string lastName, string email, int age, int* days, Degree program);
     ~NetworkStudent();
 
     Degree getDegreeProgram() override;
-    void setDegreeProgram(Degree program) override;
-
     void print() override;
 };
