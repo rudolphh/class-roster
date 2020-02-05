@@ -13,7 +13,7 @@ class Student {
         string email; 
 
         int age;// age of the student
-        int* days;// days to complete courses (3) for the term
+        int days[3];// days to complete courses (3) for the term
 
         string degreeStr(Degree program);
 
@@ -21,7 +21,7 @@ class Student {
     public: 
 
         // Requirements D.2.c 
-        Student(string ID, string firstName, string lastName, string email, int age, int* days, Degree program); 
+        Student(string ID, string firstName, string lastName, string email, int age, int days[], Degree program); 
         virtual ~Student();// Requirements D.2.e
 
         // Requirements D.2.a

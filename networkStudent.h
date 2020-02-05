@@ -10,7 +10,7 @@ class NetworkStudent : public Student {
     public:
 
     NetworkStudent(string studentID, string firstName, string lastName, string email, int age, int* days, Degree program);
-    ~NetworkStudent();
+    virtual ~NetworkStudent();
 
     Degree getDegreeProgram() override;
     void print() override;

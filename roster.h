@@ -1,12 +1,14 @@
 #pragma once
-
+#include <vector>
 #include "student.h"
+
+using std::vector;
 
 class Roster {
 
     Student** classRosterArray;// Requirements E.1.
     int max;
-    
+
     public:
     
     Roster(int numStudents);
@@ -19,10 +21,12 @@ class Roster {
 
     void printAll();
 
-    void printDaysInCourse(string studentID);
+    void printAverageDaysInCourse(string studentID);
 
     void printInvalidEmails();
 
     void printByDegreeProgram(int degreeProgram);
+
+    void getStudentIDs(vector<string>& studentIDs);
 
 };

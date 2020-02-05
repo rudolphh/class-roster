@@ -10,7 +10,7 @@ class SecurityStudent : public Student {
     public:
 
     SecurityStudent(string studentID, string firstName, string lastName, string email, int age, int* days, Degree program);
-    ~SecurityStudent();
+    virtual ~SecurityStudent();
 
     Degree getDegreeProgram() override;
     void print() override;

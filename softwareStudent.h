@@ -10,7 +10,7 @@ class SoftwareStudent : public Student {
     public:
 
     SoftwareStudent(string studentID, string firstName, string lastName, string email, int age, int* days, Degree program);
-    ~SoftwareStudent();
+    virtual ~SoftwareStudent();
 
     Degree getDegreeProgram() override;
     void print() override;
